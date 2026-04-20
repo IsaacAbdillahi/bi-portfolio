@@ -1,0 +1,11 @@
+WITH base_sales AS (
+    SELECT
+        order_date,
+        product,
+        region,
+        sales_amount
+    FROM sales
+)
+
+SELECT *
+FROM base_sales;
