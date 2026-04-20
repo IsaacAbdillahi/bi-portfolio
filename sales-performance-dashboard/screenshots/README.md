@@ -5,4 +5,3 @@
 
 ### Month-over-Month Sales Growth
 ![Month-over-Month Growth](screenshots/mom_growth.png)
-``
