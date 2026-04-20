@@ -21,3 +21,10 @@ Analyse historical sales data using SQL and present insights using an interactiv
 - Region X consistently underperforms compared to other regions
 - Month-over-Month growth slows mid-year, suggesting seasonality
 ``
+## Dashboard Preview
+
+### Overview
+screenshots/dashboard_overview.png
+
+### Month-over-Month Sales Growth
+screenshots/mom_growth.png
