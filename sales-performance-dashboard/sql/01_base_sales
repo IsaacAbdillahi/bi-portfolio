@@ -5,7 +5,22 @@ WITH base_sales AS (
         region,
         sales_amount
     FROM sales
+),
+
+monthly_sales AS (
+    SELECT
+        DATE_TRUNC('month', order_date) AS sales_month,
+        product,
+        region,
+        SUM(sales_amount) AS total_sales
+    FROM base_sales
+    GROUP BY
+        DATE_TRUNC('month', order_date),
+        product,
+        region
 )
 
 SELECT *
-FROM base_sales;
+FROM monthly_sales
+ORDER BY sales_month;
+``
