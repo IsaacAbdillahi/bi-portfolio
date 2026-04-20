@@ -18,9 +18,23 @@ monthly_sales AS (
         DATE_TRUNC('month', order_date),
         product,
         region
+),
+
+monthly_growth AS (
+    SELECT
+        sales_month,
+        product,
+        region,
+        total_sales,
+        total_sales
+            - LAG(total_sales) OVER (
+                PARTITION BY product, region
+                ORDER BY sales_month
+              ) AS mom_growth
+    FROM monthly_sales
 )
 
 SELECT *
-FROM monthly_sales
+FROM monthly_growth
 ORDER BY sales_month;
-``
+
