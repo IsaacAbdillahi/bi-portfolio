@@ -1,0 +1,6 @@
+SELECT
+    product,
+    SUM(sales_amount) AS total_revenue
+FROM sales
+GROUP BY product
+ORDER BY total_revenue DES
