@@ -1,6 +1,0 @@
-# Customer Segmentation & Value Analysis
-
-This project analyses customer-level sales data to understand how revenue is distributed across the customer base and to identify high-value customer segments.
-
-The analysis uses SQL to aggregate, rank, and segment customers based on revenue contribution, and Power BI to explore insights and support business decision-making.
-``
