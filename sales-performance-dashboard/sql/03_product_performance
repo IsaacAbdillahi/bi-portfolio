@@ -1,6 +1,11 @@
+-- Product revenue performance analysis
+-- This query identifies which products contribute the most to overall revenue
+-- to support prioritisation and strategic decision-making
+
 SELECT
     product,
     SUM(sales_amount) AS total_revenue
 FROM sales
 GROUP BY product
-ORDER BY total_revenue DES
+ORDER BY total_revenue DESC;
+``
