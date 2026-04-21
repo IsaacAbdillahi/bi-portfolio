@@ -30,11 +30,15 @@ monthly_growth AS (
             - LAG(total_sales) OVER (
                 PARTITION BY product, region
                 ORDER BY sales_month
-              ) AS mom_growth
+            ) AS mom_growth
     FROM monthly_sales
 )
 
-SELECT *
+SELECT
+    sales_month,
+    product,
+    region,
+    total_sales,
+    mom_growth
 FROM monthly_growth
 ORDER BY sales_month;
-
