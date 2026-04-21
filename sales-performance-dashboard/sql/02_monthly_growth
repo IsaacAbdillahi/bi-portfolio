@@ -1,0 +1,44 @@
+WITH base_sales AS (
+    SELECT
+        order_date,
+        product,
+        region,
+        sales_amount
+    FROM sales
+),
+
+monthly_sales AS (
+    SELECT
+        DATE_TRUNC('month', order_date) AS sales_month,
+        product,
+        region,
+        SUM(sales_amount) AS total_sales
+    FROM base_sales
+    GROUP BY
+        DATE_TRUNC('month', order_date),
+        product,
+        region
+),
+
+monthly_growth AS (
+    SELECT
+        sales_month,
+        product,
+        region,
+        total_sales,
+        total_sales
+            - LAG(total_sales) OVER (
+                PARTITION BY product, region
+                ORDER BY sales_month
+            ) AS mom_growth
+    FROM monthly_sales
+)
+
+SELECT
+    sales_month,
+    product,
+    region,
+    total_sales,
+    mom_growth
+FROM monthly_growth
+ORDER BY sales_month;
