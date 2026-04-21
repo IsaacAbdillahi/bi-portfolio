@@ -1,32 +1,70 @@
 # Sales Performance Dashboard
 
 ## Business Problem
-Stakeholders require visibility into sales performance to understand revenue trends, identify high-performing products, and detect underperforming regions.
+Stakeholders require a clear and consistent view of sales performance to understand revenue trends, identify high-performing products, and detect underperforming regions.
+
+Without a centralised view, it is difficult to monitor performance over time and take informed action.
+
+---
 
 ## Objective
-Analyse historical sales data using SQL and present insights using an interactive Power BI dashboard.
+To analyse historical sales data using SQL and present key insights through an interactive Power BI dashboard that supports data-driven decision-making.
 
-## Tools Used
-- SQL
-- Power BI
+---
 
-## Key Metrics
-- Total Revenue
-- Month-over-Month Growth
-- Revenue by Product
-- Revenue by Region
+## Data Overview
+The dataset contains transactional sales records with the following core fields:
+- Order date
+- Product
+- Region
+- Sales amount
 
-## Key Insights
-- Revenue peaks in Q4, driven primarily by Product A
-- Region X consistently underperforms compared to other regions
-- Month-over-Month growth slows mid-year, suggesting seasonality
-``
+The data was cleaned and aggregated using SQL before being visualised in Power BI.
+
+---
+
+## Approach
+The analysis was carried out in two stages:
+
+**SQL Analysis**
+- Cleaned and standardised raw sales data
+- Aggregated sales at a monthly level
+- Calculated month-over-month growth using window functions
+- Produced reporting-ready datasets
+
+**Power BI Dashboard**
+- Modelled aggregated data for analysis
+- Built KPIs and trend visuals
+- Designed visuals focused on stakeholder usability
+
+---
 
 ## Dashboard Preview
 
 ### Overview
-![Dashboard Overview](screenshots/dashboard_overview.png)
+screenshots/dashboard_overview.png
 
 ### Month-over-Month Sales Growth
-![Month-over-Month Growth](screenshots/mom_growth.png)
+screenshots/mom_growth.png
 
+---
+
+## Key Insights
+- Sales demonstrate clear seasonal patterns, with stronger performance toward year-end
+- A small number of products contribute a significant proportion of total revenue
+- Certain regions consistently underperform relative to others
+- Month-over-month growth highlights periodic volatility, useful for early issue detection
+
+---
+
+## Recommendations
+- Focus commercial efforts on high-performing products during peak periods
+- Investigate structural or operational challenges in underperforming regions
+- Use monthly growth tracking as an early warning indicator for performance changes
+
+---
+
+## Skills Demonstrated
+- SQL (CTEs, aggregations, window functions, time-based analysis)
+- Power BI (data modelling, DAX, dashboard design)
+- Business analysis and stakeholder-focused insight delivery
