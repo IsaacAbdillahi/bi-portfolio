@@ -1,6 +1,18 @@
--- Product revenue performance analysis
--- This query identifies which products contribute the most to overall revenue
--- to support prioritisation and strategic decision-making
+/*
+Purpose:
+- Analyse product-level revenue performance
+- Identify which products contribute most to overall sales
+- Support product prioritisation and strategic decision-making
+
+Design Notes:
+- Sales are aggregated at product level to assess overall contribution
+- Results are ordered by revenue to highlight top-performing products
+- This output is designed for high-level reporting and dashboard visualisation
+
+Output:
+- One row per product
+- Total revenue per product
+*/
 
 SELECT
     product,
@@ -8,4 +20,6 @@ SELECT
 FROM sales
 GROUP BY product
 ORDER BY total_revenue DESC;
-``
+
+-- This dataset is used directly in:
+-- Sales Performance dashboards to analyse product contribution
