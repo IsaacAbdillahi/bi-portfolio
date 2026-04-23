@@ -1,6 +1,19 @@
--- Base sales layer
--- This CTE defines the core dataset used throughout the analysis
--- Only essential fields are selected to ensure consistency
+/*
+Purpose:
+- Create a clean, consistent base sales dataset for analysis
+- Aggregate transactional sales data to a monthly level
+- Provide a reporting-ready dataset for time-based performance analysis
+
+Design Notes:
+- Only essential fields are selected to ensure consistency across analysis
+- Sales are aggregated monthly to support trend analysis and growth calculations
+- This dataset is designed to be consumed directly by BI tools such as Power BI
+
+Output:
+- One row per product, region, and month
+- Monthly total sales values
+*/
+
 WITH base_sales AS (
     SELECT
         order_date,
@@ -10,9 +23,6 @@ WITH base_sales AS (
     FROM sales
 ),
 
--- Monthly aggregation layer
--- Sales are aggregated at a monthly level to support time-based analysis
--- such as trend monitoring and growth calculations
 monthly_sales AS (
     SELECT
         DATE_TRUNC('month', order_date) AS sales_month,
@@ -26,9 +36,6 @@ monthly_sales AS (
         region
 )
 
--- Final output
--- This dataset is reporting-ready and can be consumed directly
--- by BI tools such as Power BI
 SELECT
     sales_month,
     product,
@@ -36,3 +43,6 @@ SELECT
     total_sales
 FROM monthly_sales
 ORDER BY sales_month;
+
+-- This dataset is used as the core input for:
+-- Sales Performance dashboards and time-based analysis in Power BI
