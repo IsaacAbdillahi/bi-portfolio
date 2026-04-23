@@ -1,6 +1,18 @@
--- Customer value segmentation
--- This query segments customers into value tiers
--- based on their total revenue contribution
+/*
+Purpose:
+- Segment customers into value-based tiers using total revenue contribution
+- Translate analytical rankings into business-friendly customer segments
+- Enable targeted analysis and insight delivery in Power BI
+
+Segmentation Logic:
+- Customers are split into revenue-based buckets using NTILE
+- Buckets are mapped to High / Medium / Low value segments
+
+Output:
+- One row per customer
+- Total revenue per customer
+- Assigned customer value segment
+*/
 
 WITH customer_revenue AS (
     SELECT
@@ -28,3 +40,6 @@ SELECT
     END AS customer_segment
 FROM customer_ranked
 ORDER BY total_revenue DESC;
+
+-- This dataset is used directly in:
+-- Power BI customer segmentation dashboards
