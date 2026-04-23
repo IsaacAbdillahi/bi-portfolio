@@ -66,3 +66,35 @@ Finance‑focused analysis examining revenue, fees, and performance drivers to s
 ---
 
 ### 🧠 Customer Behaviour Analysis
+
+Customer‑level analysis to identify behavioural patterns, segmentation opportunities, and value concentration.
+
+**Key focus areas:**
+- Customer segmentation
+- Behavioural trend analysis
+- Insight‑driven recommendations
+
+📂 `customer-behaviour-analysis`
+
+---
+
+## 🧪 Technical Focus Areas Demonstrated
+
+- Clean, modular SQL using CTEs  
+- Time‑series analysis (MoM / YoY)  
+- Window functions and advanced aggregations  
+- Dashboard‑driven storytelling  
+- Clear communication of insights to non‑technical stakeholders  
+
+---
+
+## ✅ What This Portfolio Demonstrates
+
+- Translating business questions into analytical solutions  
+- Writing readable, maintainable analytical SQL  
+- Designing dashboards for decision‑makers  
+- Turning analysis into clear business recommendations  
+
+---
+
+📍 **Location:** Liverpool, UK
