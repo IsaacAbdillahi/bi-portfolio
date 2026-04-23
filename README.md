@@ -51,8 +51,6 @@ Analysis of sales data to identify revenue trends, product performance, and regi
 
 📂 `sales-performance-dashboard`
 
----
-
 ### 🧠 Customer Segmentation & Value Analysis
 
 Analysis of customer‑level sales data to understand revenue concentration and identify high‑value customer segments using SQL and Power BI.
