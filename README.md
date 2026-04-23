@@ -53,6 +53,21 @@ Analysis of sales data to identify revenue trends, product performance, and regi
 
 ---
 
+### 🧠 Customer Segmentation & Value Analysis
+
+Analysis of customer‑level sales data to understand revenue concentration and identify high‑value customer segments using SQL and Power BI.
+
+**Key focus areas:**
+- Customer revenue aggregation and ranking
+- Value‑based customer segmentation
+- Revenue concentration analysis
+- Commercial insight and retention opportunities
+
+📁 `customer-segmentation-dashboard`
+
+
+---
+
 ### 💼 Finance & Fee Analysis
 Finance‑focused analysis examining revenue, fees, and performance drivers to support informed decision‑making in an operational finance context.
 
