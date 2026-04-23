@@ -1,6 +1,20 @@
--- Base sales layer
--- Defines the core dataset used for time-based analysis
--- Selecting only required fields keeps downstream logic clear and consistent
+/*
+Purpose:
+- Calculate month-over-month (MoM) sales growth
+- Enable trend monitoring and performance comparison over time
+- Support time-based KPIs and insights in Power BI
+
+Design Notes:
+- Sales are analysed at a monthly granularity to support trend analysis
+- Growth is calculated independently for each product and region
+- Window functions are used to compare each month to its previous period
+
+Output:
+- One row per product, region, and month
+- Monthly total sales values
+- Month-over-month sales growth
+*/
+
 WITH base_sales AS (
     SELECT
         order_date,
@@ -10,9 +24,6 @@ WITH base_sales AS (
     FROM sales
 ),
 
--- Monthly aggregation layer
--- Aggregates transactional sales data to a monthly level
--- This granularity supports trend analysis and growth calculations
 monthly_sales AS (
     SELECT
         DATE_TRUNC('month', order_date) AS sales_month,
@@ -26,9 +37,6 @@ monthly_sales AS (
         region
 ),
 
--- Month-over-Month growth calculation
--- Compares each month's total sales to the previous month
--- Partitioning by product and region allows independent trend analysis
 monthly_growth AS (
     SELECT
         sales_month,
@@ -43,9 +51,6 @@ monthly_growth AS (
     FROM monthly_sales
 )
 
--- Final reporting output
--- This dataset can be consumed directly by BI tools
--- and supports visualisation of monthly growth trends
 SELECT
     sales_month,
     product,
@@ -54,3 +59,7 @@ SELECT
     mom_growth
 FROM monthly_growth
 ORDER BY sales_month;
+
+-- This dataset is used directly in:
+-- Sales Performance dashboards to track month-over-month growth
+``
