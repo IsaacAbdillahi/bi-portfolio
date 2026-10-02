@@ -88,7 +88,7 @@ The profiling process identified:
 
 Further investigation showed that missing completion dates and processing times were expected for active cases rather than automatically representing data-quality errors.
 
-SQL used for this stage can be found in:
+SQL used for this stage:
 
 [`01_data_profiling.sql`](sql/01_data_profiling.sql)
 
@@ -118,7 +118,7 @@ Cases were classified as:
 
 Following cleaning, the dataset contained exactly **50,000 unique cases**.
 
-Final validation produced:
+### Cleaning Validation
 
 | Metric | Result |
 |---|---:|
@@ -173,13 +173,11 @@ SQL used for this stage:
 
 ## Backlog & Ageing Analysis
 
-The active operational backlog contained:
-
-**6,582 cases**
+The active operational backlog contained **6,582 cases**.
 
 A fixed reporting snapshot of **31 August 2026** was used to calculate case age consistently.
 
-The ageing analysis produced:
+### Backlog Ageing
 
 | Ageing Bucket | Active Cases |
 |---|---:|
@@ -189,7 +187,7 @@ The ageing analysis produced:
 | 31–60 days | 318 |
 | 60+ days | 5,913 |
 
-This means approximately **89.84% of the active backlog was more than 60 days old**.
+Approximately **89.84% of the active backlog was more than 60 days old**.
 
 ### Backlog Dashboard
 
@@ -197,7 +195,7 @@ This means approximately **89.84% of the active backlog was more than 60 days ol
 
 The 60+ day backlog was distributed across teams rather than being isolated within a single operational area.
 
-The largest 60+ day backlog by case type included:
+### 60+ Day Backlog by Case Type
 
 | Case Type | 60+ Day Cases |
 |---|---:|
@@ -210,7 +208,7 @@ The largest 60+ day backlog by case type included:
 | Withdrawal | 606 |
 | Complaint | 469 |
 
-Priority analysis identified:
+### 60+ Day Backlog by Priority
 
 | Priority | 60+ Day Cases |
 |---|---:|
@@ -267,7 +265,7 @@ The reporting layer added:
 
 This separated the reporting model from the raw operational data and provided a consistent dataset for dashboard development.
 
-SQL:
+SQL used for this stage:
 
 [`05_reporting_layer.sql`](sql/05_reporting_layer.sql)
 
@@ -324,3 +322,137 @@ CALCULATE(
     [60+ Day Backlog],
     analysis_cases[priority] IN {"High", "Urgent"}
 )
+```
+
+---
+
+## Key Findings
+
+1. **SLA breaches represent a material operational issue.**  
+   11,207 of 43,418 completed cases breached SLA, producing an overall breach rate of approximately **25.81%**.
+
+2. **The backlog is heavily aged.**  
+   5,913 of 6,582 active cases were more than 60 days old, representing approximately **89.84%** of the active backlog.
+
+3. **High-priority aged cases require attention.**  
+   **1,622 High or Urgent cases** were already more than 60 days old.
+
+4. **Performance issues are not concentrated within one team.**  
+   The aged backlog was distributed broadly across operational teams.
+
+5. **Case type and priority provide important performance signals.**  
+   Complaint and other complex case types showed greater SLA risk, while higher-priority cases were substantially more likely to breach.
+
+6. **Backlog volume and SLA risk should be managed separately.**  
+   High-volume aged work does not necessarily represent the same operational problem as high-risk SLA work.
+
+7. **Escalation is associated with poorer SLA performance.**  
+   Escalated cases showed substantially higher breach rates, although the analysis does not establish escalation as the cause.
+
+---
+
+## Recommendations
+
+### 1. Prioritise Aged High and Urgent Cases
+
+Create a targeted recovery queue for the **1,622 High/Urgent cases aged over 60 days**, with clear ownership and regular management review.
+
+### 2. Investigate High-Risk Case Types
+
+Review the workflow for Complaints, Transfers and other higher-risk case types to identify delays, hand-offs and process bottlenecks.
+
+### 3. Review Escalation Pathways
+
+Investigate when cases are escalated and whether earlier warning indicators could identify cases at risk of breaching SLA before escalation becomes necessary.
+
+### 4. Separate Backlog and SLA Management Strategies
+
+Use different interventions for:
+
+- **High-volume backlog areas** — capacity, automation and process efficiency
+- **High-SLA-risk areas** — specialist intervention, prioritisation and tighter monitoring
+
+### 5. Introduce Proactive Ageing Controls
+
+Use ageing thresholds and dashboard alerts to identify cases approaching critical ageing levels rather than waiting until cases become severely overdue.
+
+---
+
+## Project Structure
+
+```text
+operations-sla-performance/
+│
+├── README.md
+│
+├── sql/
+│   ├── 01_data_profiling.sql
+│   ├── 02_data_cleaning.sql
+│   ├── 03_sla_analysis.sql
+│   ├── 04_backlog_analysis.sql
+│   └── 05_reporting_layer.sql
+│
+├── images/
+│   ├── Executive Overview.png
+│   ├── SLA Performance.png
+│   ├── Backlog Ageing.png
+│   └── Operational Drivers.png
+│
+└── dashboard/
+    └── Practice_PowerBI_OperationsSLA.pbix
+```
+
+---
+
+## Skills Demonstrated
+
+### SQL
+
+- Data profiling and validation
+- Data cleaning
+- CTEs
+- CASE statements
+- Conditional aggregation
+- NULL handling
+- Date and timestamp analysis
+- Business-rule implementation
+- SLA classification
+- Reporting-layer development
+
+### Power BI
+
+- Data transformation
+- Data modelling
+- DAX measures
+- KPI development
+- Interactive filtering
+- Conditional formatting
+- Dashboard design
+- Management reporting
+
+### Business Intelligence
+
+- Translating business questions into analytical requirements
+- Identifying operational risks
+- Distinguishing backlog volume from SLA risk
+- Communicating findings through dashboards
+- Developing actionable management recommendations
+- Building an end-to-end reporting workflow
+
+---
+
+## Repository Contents
+
+The complete SQL workflow is available in the [`sql`](sql/) folder.
+
+The Power BI dashboard file is available here:
+
+[`Practice_PowerBI_OperationsSLA.pbix`](dashboard/Practice_PowerBI_OperationsSLA.pbix)
+
+Dashboard screenshots are available in the [`images`](images/) folder.
+
+---
+
+## About This Project
+
+This project uses **simulated data** and was created as a portfolio project to demonstrate an end-to-end Business Intelligence workflow within a financial services Operations environment.
